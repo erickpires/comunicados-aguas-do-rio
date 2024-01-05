@@ -31,6 +31,9 @@ export class AguasDoRioService implements IPostProviderService {
             const dateString = dateNode?.text;
             const date = dayjs(dateString, 'DD/MM/YYYY').toDate();
 
+            const linkNode = postNode.querySelector('.link-title');
+            const link = linkNode?.getAttribute('href');
+
             const titleNode = postNode.querySelector('.card-title');
             const title = titleNode?.text;
 
@@ -47,6 +50,7 @@ export class AguasDoRioService implements IPostProviderService {
                 id: createHash('sha1').update(content).digest('hex'),
                 date,
                 title,
+                link,
                 content
             });
         }

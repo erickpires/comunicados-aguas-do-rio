@@ -17,8 +17,11 @@ export class TelegramService implements ITelegramService {
         this._bot = new TelegramBot(token, {polling: false});
     }
     async sendPost(post: IPost): Promise<void> {
+        const title = post.link ?
+                        `[${post.title}](${post.link})` :
+                        `*${post.title}*`;
 
-        const message = `*${post.title}*\n\n_Data: ${this._dateTimeFormat.format(post.date)}_\n\n ${post.content}`;
+        const message = `${title}\n\n_Data: ${this._dateTimeFormat.format(post.date)}_\n\n ${post.content}`;
 
         this._bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
     }
