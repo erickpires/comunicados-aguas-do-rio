@@ -3,14 +3,16 @@ import { AguasDoRioService } from "./services/AguasDoRioService";
 import { PostService } from "./services/PostService";
 import { TelegramService } from "./services/TelegramService";
 import { StorageService } from "./services/StorageService";
+import { CedaeService } from "./services/CedaeService";
 
 const main = async () => {
     const storageService = await StorageService.create();
 
     const axiosInstance = axios.create();
     const postService = new PostService([
-        // TODO: Add CEDAE and Rio+Saneammento
-        new AguasDoRioService(axiosInstance)
+        // TODO: Add Rio+Saneammento
+        new AguasDoRioService(axiosInstance),
+        new CedaeService(axiosInstance),
     ], storageService);
 
     const telegramService = new TelegramService();
