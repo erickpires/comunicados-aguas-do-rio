@@ -24,11 +24,13 @@ const main = async () => {
         console.log("No unhandled posts");
     }
 
-    for (const post of filteredPosts) {
+    const sortedPosts = filteredPosts.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    for (const post of sortedPosts) {
         await telegramService.sendPost(post);
     }
 
-    await postService.saveHandledPosts(filteredPosts);
+    await postService.saveHandledPosts(sortedPosts);
 
     await storageService.close();
 };
