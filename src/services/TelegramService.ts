@@ -3,6 +3,9 @@ import 'dotenv/config';
 
 import { IPost } from "../interfaces/IPost";
 import { ITelegramService } from "../interfaces/ITelegramService";
+import { sleep } from '../utils';
+
+const _messagesInterval = 3000;
 
 const chatId = process.env.CHAT_ID ?? '';
 const token = process.env.BOT_API_KEY ?? '';
@@ -23,6 +26,8 @@ export class TelegramService implements ITelegramService {
 
         const message = `${title}\n\n_Data: ${this._dateTimeFormat.format(post.date)}_\n\n ${post.content}`;
 
-        this._bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+        await this._bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+
+        await sleep(_messagesInterval);
     }
 }
