@@ -1,14 +1,16 @@
 import { AxiosInstance } from "axios";
-import { parse, HTMLElement } from 'node-html-parser';
+import { parse } from 'node-html-parser';
 import { createHash } from 'crypto';
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import 'dayjs/locale/pt-br';
 
 import { IPost } from "../interfaces/IPost";
 import { IPostProviderService } from "../interfaces/IPostProviderService";
 
 dayjs.extend(customParseFormat);
+dayjs.locale('pt-br');
 
 const _cedaeNewsPageUrl = 'https://cedae.com.br/Noticias/';
 

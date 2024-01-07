@@ -4,11 +4,13 @@ import { createHash } from 'crypto';
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import 'dayjs/locale/pt-br';
 
 import { IPost } from "../interfaces/IPost";
 import { IPostProviderService } from "../interfaces/IPostProviderService";
 
 dayjs.extend(customParseFormat);
+dayjs.locale('pt-br');
 
 const totalPostsToQuery = 10;
 const AguasDoRioServiceQueryUrl = `https://aguasdorio.com.br/wp-admin/admin-ajax.php?id=lista-noticias&posts_per_page=${totalPostsToQuery}&page=0&offset=0&repeater=default&preloaded=false&preloaded_amount=0&category=comunicados&order=DESC&orderby=date&action=alm_get_posts`;
