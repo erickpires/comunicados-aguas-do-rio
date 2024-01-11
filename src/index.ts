@@ -5,6 +5,7 @@ import { TelegramService } from "./services/TelegramService";
 import { StorageService } from "./services/StorageService";
 import { CedaeService } from "./services/CedaeService";
 import { RioSaneamentoService } from "./services/RioSaneamentoService";
+import { IguaService } from "./services/IguaService";
 
 const main = async () => {
     const storageService = await StorageService.create();
@@ -14,6 +15,7 @@ const main = async () => {
         new AguasDoRioService(axiosInstance),
         new CedaeService(axiosInstance),
         new RioSaneamentoService(axiosInstance),
+        new IguaService(axiosInstance),
     ], storageService);
 
     const telegramService = new TelegramService();
